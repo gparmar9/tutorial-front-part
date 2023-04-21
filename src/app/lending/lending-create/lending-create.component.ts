@@ -56,8 +56,8 @@ export class LendingCreateComponent {
 
   onSave() {
 
-    const begin = new Date(this.lending.begin_date);
-    const end = new Date(this.lending.end_date);
+    const begin = new Date(this.lending.beginDate);
+    const end = new Date(this.lending.endDate);
 
     const time = Math.abs(end.getTime() - begin.getTime());
     const days = Math.ceil(time / (1000 * 60 * 60 * 24)); 
@@ -77,10 +77,14 @@ export class LendingCreateComponent {
     else {
       this.lendingService.saveLending(this.lending).subscribe(result =>  {
         this.dialogRef.close();
+        this.snackBar.open("Préstamo creado", 'Aceptar', {
+          duration: 2000
+        });
+      }, error => {
+        this.snackBar.open("Error", 'Aceptar', {
+          duration: 2000
+        });
       }); 
-      this.snackBar.open("Préstamo creado", 'Aceptar', {
-        duration: 2000
-      });
     }
   }  
 

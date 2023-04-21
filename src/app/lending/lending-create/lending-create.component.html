@@ -23,7 +23,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Escoge una fecha de préstamo</mat-label>
-            <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="lending.begin_date">
+            <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="lending.beginDate">
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -31,7 +31,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Escoge una fecha de devolución</mat-label>
-            <input matInput [matDatepicker]="picker2" name="date" [(ngModel)]="lending.end_date">
+            <input matInput [matDatepicker]="picker2" name="date" [(ngModel)]="lending.endDate">
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
