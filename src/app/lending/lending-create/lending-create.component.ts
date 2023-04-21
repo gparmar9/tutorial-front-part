@@ -77,6 +77,7 @@ export class LendingCreateComponent {
     else {
       this.lendingService.saveLending(this.lending).subscribe(result =>  {
         this.dialogRef.close();
+        console.log(begin);
         this.snackBar.open("Préstamo creado", 'Aceptar', {
           duration: 2000
         });
