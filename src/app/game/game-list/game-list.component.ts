@@ -5,6 +5,8 @@ import { Category } from 'src/app/category/model/Category';
 import { GameEditComponent } from '../game-edit/game-edit.component';
 import { GameService } from '../game.service';
 import { Game } from '../model/Game';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
     selector: 'app-game-list',
@@ -22,6 +24,7 @@ export class GameListComponent implements OnInit {
         private gameService: GameService,
         private categoryService: CategoryService,
         public dialog: MatDialog,
+        private snackBar: MatSnackBar,
     ) { }
 
     ngOnInit(): void {
@@ -38,8 +41,11 @@ export class GameListComponent implements OnInit {
     onCleanFilter(): void {
         this.filterTitle = null;
         this.filterCategory = null;
-
         this.onSearch();
+
+        this.snackBar.open("Filtros eliminados", 'Aceptar', {
+            duration: 2000
+          });
     }
 
     onSearch(): void {
@@ -50,6 +56,10 @@ export class GameListComponent implements OnInit {
         this.gameService.getGames(title, categoryId).subscribe(
             games => this.games = games
         );
+
+        this.snackBar.open("Filtrando...", 'Aceptar', {
+            duration: 2000
+          });
     }
 
     createGame() {    

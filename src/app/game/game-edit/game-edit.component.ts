@@ -6,6 +6,7 @@ import { CategoryService } from 'src/app/category/category.service';
 import { Category } from 'src/app/category/model/Category';
 import { GameService } from '../game.service';
 import { Game } from '../model/Game';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-game-edit',
@@ -18,20 +19,26 @@ export class GameEditComponent implements OnInit {
     authors: Author[];
     categories: Category[];
 
+    edit = true;
+
     constructor(
         public dialogRef: MatDialogRef<GameEditComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private gameService: GameService,
         private categoryService: CategoryService,
         private authorService: AuthorService,
+        private snackBar: MatSnackBar,
+
     ) { }
 
     ngOnInit(): void {
         if (this.data.game != null) {
             this.game = Object.assign({}, this.data.game);
+            this.edit = true;
         }
         else {
             this.game = new Game();
+            this.edit = false;
         }
 
         this.categoryService.getCategories().subscribe(
@@ -62,9 +69,17 @@ export class GameEditComponent implements OnInit {
     }
 
     onSave() {
+        console.log(this.edit);
         this.gameService.saveGame(this.game).subscribe(result => {
             this.dialogRef.close();
         });    
+
+        if (this.edit) {
+            this.snackBar.open("Juego editado", 'Aceptar', {duration: 2000});
+        } else {
+            this.snackBar.open("Juego creado", 'Aceptar', {duration: 2000});
+        }
+
     }  
 
     onClose() {

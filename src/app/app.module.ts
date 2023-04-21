@@ -13,6 +13,7 @@ import { LendingModule } from './lending/lending.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

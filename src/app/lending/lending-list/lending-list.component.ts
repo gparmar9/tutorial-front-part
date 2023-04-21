@@ -11,6 +11,7 @@ import { Game } from '../../game/model/Game';
 import { Client } from '../../client/model/Client';
 import { GameService } from 'src/app/game/game.service';
 import { ClientService } from 'src/app/client/client.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lending-list',
@@ -35,11 +36,15 @@ export class LendingListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'game', 'client', 'begin_date', 'end_date', 'action'];
 
   constructor(
+
     private lendingService: LendingService,
     public dialog: MatDialog,
 
     private gameService: GameService,
     private clientService: ClientService,
+
+    private snackBar: MatSnackBar,
+    
   ){}
 
   ngOnInit(): void {
@@ -105,6 +110,7 @@ export class LendingListComponent implements OnInit {
             }); 
         }
     });
+
   }
 
   onSearch(): void{
@@ -127,6 +133,10 @@ export class LendingListComponent implements OnInit {
         this.pageSize = data.pageable.pageSize;
         this.totalElements = data.totalElements;
     });
+
+    this.snackBar.open("Filtrando...", 'Aceptar', {
+      duration: 2000
+    });
   }
 
   onCleanFilter(): void {
@@ -135,6 +145,10 @@ export class LendingListComponent implements OnInit {
     this.filterDate = null;
 
     this.onSearch();
+
+    this.snackBar.open("Filtros eliminados", 'Aceptar', {
+      duration: 2000
+    });
 }
 
 }

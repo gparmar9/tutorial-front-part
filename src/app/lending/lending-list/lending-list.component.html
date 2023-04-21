@@ -21,7 +21,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Escoge una fecha</mat-label>
                 <input matInput [matDatepicker]="picker" disableRipple [(ngModel)]="filterDate" name="date">
-                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -52,12 +52,12 @@
 
         <ng-container matColumnDef="begin_date">
             <mat-header-cell *matHeaderCellDef> Fecha de préstamo  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.begin_date | date: 'dd-MM-yyyy'}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.beginDate | date: 'dd/MM/yyyy'}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="end_date">
             <mat-header-cell *matHeaderCellDef> Fecha de devolución  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.end_date | date: 'dd-MM-yyyy'}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.endDate | date: 'dd/MM/yyyy'}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="action">

@@ -5,6 +5,7 @@ import { LendingPage } from './model/LendingPage';
 import { LENDING_DATA } from './model/mock-lendings';
 import { Lending } from './model/Lending';
 import { HttpClient } from '@angular/common/http';
+import { DateAdapter } from '@angular/material/core';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ import { HttpClient } from '@angular/common/http';
 export class LendingService {
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private dateAdapter: DateAdapter<Date>
+  ) { this.dateAdapter.setLocale('en-GB'); }
 
   getLendings(pageable: Pageable, idGame?: number, idClient?: number, newDate?: Date): Observable<LendingPage>{
     return this.http.post<LendingPage>(this.composeFindUrl(idGame,idClient,newDate), {pageable:pageable});

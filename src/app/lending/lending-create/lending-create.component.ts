@@ -7,6 +7,7 @@ import { Client } from '../../client/model/Client';
 import { GameService } from '../../game/game.service';
 import { ClientService } from '../../client/client.service';
 import { DialogErrorComponent } from 'src/app/core/dialog-error/dialog-error.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lending-create',
@@ -32,6 +33,8 @@ export class LendingCreateComponent {
     private clientService: ClientService,
 
     private dialog: MatDialog,
+
+    private snackBar: MatSnackBar,
   ) {}
   
 
@@ -75,8 +78,10 @@ export class LendingCreateComponent {
       this.lendingService.saveLending(this.lending).subscribe(result =>  {
         this.dialogRef.close();
       }); 
+      this.snackBar.open("Préstamo creado", 'Aceptar', {
+        duration: 2000
+      });
     }
-
   }  
 
   onClose() { 

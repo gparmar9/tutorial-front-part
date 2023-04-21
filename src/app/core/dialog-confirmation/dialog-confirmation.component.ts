@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-dialog-confirmation',
@@ -13,7 +15,10 @@ export class DialogConfirmationComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogConfirmationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+
+    private snackBar: MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +28,7 @@ export class DialogConfirmationComponent implements OnInit {
 
   onYes() {
     this.dialogRef.close(true);
+    this.snackBar.open("Eliminado", 'Aceptar', {duration: 2000});
   }
 
   onNo() {
